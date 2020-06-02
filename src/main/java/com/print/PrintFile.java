@@ -16,7 +16,7 @@ import java.io.FileInputStream;
 public class PrintFile {
     public void printPdf(String fileName) {
         //构造一个文件选择器，默认为当前目录
-        File file = new File(fileName);//获取选择的文件
+        File file = new File(fileName);//获取选择的文件---------
         //构建打印请求属性集
         PrintRequestAttributeSet pras = new HashPrintRequestAttributeSet();
         //设置打印格式，因为未确定文件类型，这里选择AUTOSENSE
