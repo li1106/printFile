@@ -24,7 +24,6 @@ public class Demo {
 
         log.debug("冒泡 method result is:{}",mpSort());
 
-        log.debug("冒泡 method result is:{}",mpSort());
     }
 
     /**
