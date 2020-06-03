@@ -1,5 +1,6 @@
 package com.stream;
 
+import com.common.Person;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -43,10 +44,10 @@ public class StreamDemo2 {
          */
         IntSummaryStatistics stats = numbers.stream().mapToInt((x) -> x).summaryStatistics();
 
-        log.debug("列表中最大的数 : {}" ,stats.getMax());
-        log.debug("列表中最小的数 : {}" , stats.getMin());
-        log.debug("所有数之和 : {}" , stats.getSum());
-        log.debug("平均数 : {}" , stats.getAverage());
+        log.debug("列表中最大的数 : {}", stats.getMax());
+        log.debug("列表中最小的数 : {}", stats.getMin());
+        log.debug("所有数之和 : {}", stats.getSum());
+        log.debug("平均数 : {}", stats.getAverage());
 
         log.info("------------Stream.of() flatMap()");
         List<Integer> collected0 = new ArrayList<>();
@@ -62,7 +63,7 @@ public class StreamDemo2 {
          */
         collected1 = Stream.of(collected0, collected1)
                 .flatMap(num -> num.stream()).collect(Collectors.toList());
-        log.debug("合并结果:{}",collected1);// 1,3,5,2,4
+        log.debug("合并结果:{}", collected1);// 1,3,5,2,4
 
         log.info("------------->reduce");
 //        int sumAll = Stream.of(1, 2, 3, 4).reduce(0,
@@ -70,10 +71,54 @@ public class StreamDemo2 {
         int sumAll = Stream.of(1, 2, 3, 4).reduce(0,
                 Integer::sum);//  Integer在Java8中提供了sum求和静态方法
 
-        log.debug("结果为:{}",sumAll);// 10
+        log.debug("结果为:{}", sumAll);// 10
 
 //        System.err.println(Collectors.toCollection(LinkedList::new).toString());
 
+        List<String> collected = new ArrayList<>();
+        collected.add("alpha");
+        collected.add("beta");
+        collected.add("cool");
+        collected.add("delta");
+        collected.stream().map(string -> string.toUpperCase())
+                .count();
+        System.out.println(collected); // [alpha, beta, cool, delta]
 
+
+        List<Person> personList = new ArrayList<>();//随机生成5个person实例
+        for (int i = 0; i < 5; i++) {
+            personList.add(new Person(i));
+        }
+        List<Integer> ages = new ArrayList<>();
+        personList.stream().forEach(person -> ages.add(person.getAge()));
+        System.out.println(ages);//第一处打印  [0, 1, 2, 3, 4]
+        ages.clear();
+        personList.stream().map(person -> {
+            person.setAge(person.getAge() + 10);
+            return person;
+        }).count();
+        personList.stream().forEach(person -> ages.add(person.getAge()));
+        System.out.println(ages);//第二处打印  [10, 11, 12, 13, 14]
+
+        /**
+         * peek方法生成一个包含原Stream的所有元素的新Stream，同时会提供一个消费函数（Consumer实例），
+         * 新Stream每个元素被消费的时候都会执行给定的消费函数，并且消费函数优先执行
+         */
+        log.info("------------------->peek");
+        Stream.of(1, 2, 3, 4, 5)
+                .peek(integer -> System.out.println(integer))
+                .forEach(System.out::println);
+
+        /**
+         * skip方法将过滤掉原Stream中的前N个元素，返回剩下的元素所组成的新Stream。
+         * 如果原Stream的元素个数大于N，将返回原Stream的后（原Stream长度-N）个元素
+         * 所组成的新Stream；如果原Stream的元素个数小于或等于N，将返回一个空Stream。
+         */
+        log.info("----------->skip");
+        Stream.of(1, 2, 3, 4, 5)
+                .skip(1)
+                .forEach(System.out::println);
+
+        System.err.println(strings.stream().filter(s -> !s.isEmpty()).collect(Collectors.joining(".....","[","]")));
     }
 }
