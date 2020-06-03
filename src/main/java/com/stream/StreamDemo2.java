@@ -120,5 +120,12 @@ public class StreamDemo2 {
                 .forEach(System.out::println);
 
         System.err.println(strings.stream().filter(s -> !s.isEmpty()).collect(Collectors.joining(".....","[","]")));
+
+        log.debug("创建者模式:{}",getPerson());
+
+    }
+
+    public static Person getPerson(){
+       return Person.builder().age(5).build();
     }
 }
