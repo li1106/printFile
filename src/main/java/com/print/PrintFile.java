@@ -41,6 +41,14 @@ public class PrintFile {
             }
         }
     }
+    /**
+     * 功能描述: <br>
+     * 〈〉
+     * @Param: [args]
+     * @Return: void
+     * @Author: Administrator
+     * @Date: 2020/6/2 17:59
+     */
     public static void main(String args[]) {
         PrintFile pic = new PrintFile();
         pic.printPdf("C:\\Users\\Administrator\\Desktop\\基本信息.txt");
