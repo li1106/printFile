@@ -126,6 +126,7 @@ public class StreamDemo2 {
     }
 
     public static Person getPerson(){
+        new Random().ints().limit(2).forEach(System.out::println);
        return Person.builder().age(5).build();
     }
 }
