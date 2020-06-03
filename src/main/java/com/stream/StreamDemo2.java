@@ -67,7 +67,7 @@ public class StreamDemo2 {
 
         log.info("------------->reduce");
 //        int sumAll = Stream.of(1, 2, 3, 4).reduce(0,
-//                (sum, element) -> sum + element);// 给一个0是用来启动，的，若给-1，结果会是9
+//                (sum, element) -> sum + element);// 给一个0是用来启动的，若给-1，结果会是9
         int sumAll = Stream.of(1, 2, 3, 4).reduce(0,
                 Integer::sum);//  Integer在Java8中提供了sum求和静态方法
 
