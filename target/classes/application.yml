@@ -10,6 +10,15 @@ spring:
     servlet:
       content-type: text/html
 
+
+pool:
+  corePoolSize: 1
+  maxPoolSize: 10
+  queueCapacity: 5
+  keepAliveSeconds: 120
+  threadNamePrefix: taskTracker-
+
+
 #  devtools:
 #    restart:
 #      enabled: true
