@@ -30,7 +30,8 @@ import static java.lang.System.*;
  * @Date 2020/6/3 17:35
  */
 @Controller
-@RequestMapping({"index","/"})
+@RequestMapping({"/"})
+//@RequestMapping({"index","/"})
 @Slf4j
 @Api(description = "程序入口接口")
 public class IndexController {
@@ -40,7 +41,8 @@ public class IndexController {
 
     @ApiOperation(value = "跳转index首页接口", notes="跳转index首页接口")
     @ApiImplicitParam(name = "model", value = "Model对象", paramType = "saveData", required = false, dataType = "Model")
-    @RequestMapping(value = {"index","/"}, method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = {"index"}, method = {RequestMethod.GET})
+//    @RequestMapping(value = {"index"}, method = {RequestMethod.GET,RequestMethod.POST})
     public String index(Model model) throws ExecutionException, InterruptedException {
         Map data = DataUtils.getData();
 
