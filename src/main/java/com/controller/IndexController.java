@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.bean.PersonBean;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +18,11 @@ import java.util.List;
  */
 @Controller
 @RequestMapping({"index","/"})
+@Slf4j
 public class IndexController {
-    @RequestMapping(value = {"index","/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"index","/"}, method = {RequestMethod.GET,RequestMethod.POST})
     public String index(Model model) {
+//        log.info("IndexController.index param:{}",model.);
         PersonBean person = new PersonBean();
         person.setName("张三");
         person.setAge(22);
